@@ -5,7 +5,8 @@
     optTitleSelector = '.post-title',
     optTitleListSelector = '.titles',
     optArticleTagsSelector = '.post-tags .list',
-    optArticleAuthorSelector = '.post-author';
+    optArticleAuthorSelector = '.post-author',
+    optTagsListSelector = '.tags.list';
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
 
@@ -93,6 +94,9 @@
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   const generateTags = function(){
+    /* [NEW] create a new variable allTags with an empty object */
+    let allTags = {};
+
     /* find all articles */
     const articles = document.querySelectorAll(optArticleSelector);
   
@@ -119,6 +123,17 @@
         /* add generated code to html variable */
         html += linkHTML;
 
+        /* [NEW] check if this link is NOT already in allTags */
+        if(!allTags[tag]){
+
+          /* [NEW] add tag to allTags object*/
+          allTags[tag] = 1;
+
+          /* [NEW] else increment existing property*/
+        } else {
+          allTags[tag]++;
+        }
+
         /* END LOOP: for each tag */
       }
 
@@ -126,9 +141,27 @@
 
       /* insert HTML of all the links into the tags wrapper */
       tagsList.innerHTML = html;
+
+      /* END LOOP: for every article: */
     }
     
-  /* END LOOP: for every article: */
+    /* [NEW] find list of tags in right column */
+    const tagList = document.querySelector(optTagsListSelector);
+
+    /* [NEW] create variable for all links HTML code */
+    let allTagsHTML = '';
+
+    /* [NEW] START LOOP: for each tag in allTags: */
+    for(const tag in allTags){
+      /* [NEW] generate code of a link and add it to allTagsHTML */
+      allTagsHTML += '<li><a href="#tag-'+ tag +'">' + tag + ' (' + allTags[tag] + ')</a></li>';
+
+      /* [NEW] END LOOP: for each tag in allTags: */
+    }
+
+    /*[NEW] add HTML from allTagsHTML to tagList */
+    tagList.innerHTML = allTagsHTML;
+  
   };
   
   generateTags();
