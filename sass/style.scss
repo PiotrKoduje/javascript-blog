@@ -9,10 +9,29 @@ $font-logo: 'Sacramento', cursive;
 $font-header: 'Oswald', sans-serif;
 $font-text: 'Source Sans Pro', sans-serif;
 
+/*Mixins*/
+@mixin tags-look($fz, $color, $space){
+  font-size: $fz;
+  color: $color;
+  letter-spacing: $space;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px;
+  transition: .3s all;
+
+  &:hover{
+    transform: scale(1.2);
+  }
+}
+
 /* Global */
 
 *, *::before, *::after {
   box-sizing: border-box;
+}
+
+a{
+  text-decoration: none;;
 }
 
 body {
@@ -85,9 +104,16 @@ body {
   }
 }
 
-.list-horizontal {
+.list-horizontal{
   li {
     display: inline-block;
+    padding: 2px;
+  }
+}
+
+.list.tags{
+  li{
+    display: inline-flex;
   }
 }
 
@@ -116,5 +142,27 @@ body {
   display: flex;
   p {
     margin: 0 10px 0 0;
+    line-height: 38px;
   }
+}
+
+/*Tags cloud*/
+.tag-size-1{
+  @include tags-look(12px,rgb(44, 18, 67) ,4px);
+}
+
+.tag-size-2{
+  @include tags-look(16px,rgb(179, 84, 84) ,1px);
+}
+
+.tag-size-3{
+  @include tags-look(20px,rgb(38, 169, 106) ,1px);
+}
+
+.tag-size-4{
+  @include tags-look(24px,rgb(19, 51, 100) ,2px);
+}
+
+.tag-size-5{
+  @include tags-look(28px,rgb(214, 104, 25) ,3px);
 }
