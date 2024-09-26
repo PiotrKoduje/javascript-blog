@@ -14,9 +14,7 @@ $font-text: 'Source Sans Pro', sans-serif;
   font-size: $fz;
   color: $color;
   letter-spacing: $space;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 5px;
+  padding: 2px 5px;
   transition: .3s all;
 
   &:hover{
@@ -107,13 +105,14 @@ body {
 .list-horizontal{
   li {
     display: inline-block;
-    padding: 2px;
+    padding: 4px;
   }
 }
 
 .list.tags{
   li{
     display: inline-flex;
+    align-items: baseline;
   }
 }
 
